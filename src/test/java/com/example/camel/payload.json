@@ -1,5 +1,12 @@
 {
-  "name":"Gopi",
-  "owners": [{"ownerId":"owner1"}, {"ownerId":"owner2"}],
+  "name": "Gopi",
+  "owners": [
+    {
+      "ownerId": "owner1"
+    },
+    {
+      "ownerId": "owner2"
+    }
+  ],
   "message": "TESTME"
 }
