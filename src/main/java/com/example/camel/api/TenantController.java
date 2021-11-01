@@ -19,26 +19,23 @@ import java.util.UUID;
 @Produces(MediaType.APPLICATION_JSON)
 public class TenantController {
 
-    @Autowired
-    CamelContext camelContext;
+  @Autowired CamelContext camelContext;
 
-    @Autowired
-    ProducerTemplate producerTemplate;
+  @Autowired ProducerTemplate producerTemplate;
 
-    @GET
-    public Response ping() {
-        return Response.ok("Alive").build();
-    }
+  @GET
+  public Response ping() {
+    return Response.ok("Alive").build();
+  }
 
-    @POST
-    public Response receiveTenantRequest(Tenant tenant) {
+  @POST
+  public Response receiveTenantRequest(Tenant tenant) {
 
-        Exchange exchange = ExchangeBuilder.anExchange(camelContext).withBody(tenant).build();
-        Exchange response = producerTemplate.send("direct:REST", exchange);
-        UUID uniqueRequestId = (UUID) response.getIn().getHeader("ID");
-        Map<String, Object> map = new HashMap<>();
-        map.put("id", uniqueRequestId);
-        return Response.ok(map).build();
-    }
-
+    Exchange exchange = ExchangeBuilder.anExchange(camelContext).withBody(tenant).build();
+    Exchange response = producerTemplate.send("direct:REST", exchange);
+    UUID uniqueRequestId = (UUID) response.getIn().getHeader("ID");
+    Map<String, Object> map = new HashMap<>();
+    map.put("id", uniqueRequestId);
+    return Response.ok(map).build();
+  }
 }

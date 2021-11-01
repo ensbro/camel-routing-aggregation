@@ -9,8 +9,8 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class RouteSurprises {
 
-    @Handler
-    public void handleError(Exchange exchange) {
-        log.info("Place to handle the error");
-    }
+  @Handler
+  public void handleError(Exchange exchange) {
+    log.info("Place to handle the error");
+  }
 }

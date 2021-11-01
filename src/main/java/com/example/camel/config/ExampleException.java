@@ -1,4 +1,3 @@
 package com.example.camel.config;
 
-public class ExampleException extends  Exception{
-}
+public class ExampleException extends Exception {}

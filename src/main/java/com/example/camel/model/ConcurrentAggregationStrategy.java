@@ -9,21 +9,20 @@ import java.util.concurrent.ConcurrentHashMap;
 @Slf4j
 public class ConcurrentAggregationStrategy implements AggregationStrategy {
 
-    @Override
-    public Exchange aggregate(Exchange oldExchange, Exchange newExchange) {
-        if (oldExchange == null) {
-            ConcurrentHashMap map = new ConcurrentHashMap();
-            newExchange.getIn().setHeader("AGGREGATED_MESSAGES", map);
-        } else {
-            ConcurrentHashMap map = (ConcurrentHashMap) oldExchange.getIn().getHeader("AGGREGATED_MESSAGES");
-            newExchange.getIn().setHeader("AGGREGATED_MESSAGES", map);
-        }
-
-        return newExchange;
+  @Override
+  public Exchange aggregate(Exchange oldExchange, Exchange newExchange) {
+    final ConcurrentHashMap<?, ?> map;
+    if (oldExchange == null) {
+      map = new ConcurrentHashMap<>();
+    } else {
+      map = (ConcurrentHashMap<?, ?>) oldExchange.getIn().getHeader("AGGREGATED_MESSAGES");
     }
+    newExchange.getIn().setHeader("AGGREGATED_MESSAGES", map);
 
-    private void collectNeedInfo(ConcurrentHashMap map, Exchange exchange)
-    {
-        log.info("Collected Information on while aggregating..");
-    }
+    return newExchange;
+  }
+
+  private void collectNeedInfo(ConcurrentHashMap<?, ?> map, Exchange exchange) {
+    log.info("Collected Information on while aggregating..");
+  }
 }

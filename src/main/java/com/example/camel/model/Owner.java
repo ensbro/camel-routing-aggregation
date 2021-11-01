@@ -1,6 +1,5 @@
 package com.example.camel.model;
 
-
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -11,10 +10,10 @@ import javax.annotation.PostConstruct;
 @Component
 @Slf4j
 public class Owner {
-    String ownerId;
+  String ownerId;
 
-    @PostConstruct
-    public void init() {
-        log.info("{} Created.", this.getClass().getSimpleName());
-    }
+  @PostConstruct
+  public void init() {
+    log.info("{} Created.", this.getClass().getSimpleName());
+  }
 }

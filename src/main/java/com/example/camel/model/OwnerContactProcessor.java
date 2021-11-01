@@ -6,25 +6,22 @@ import org.apache.camel.Processor;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
-import java.util.UUID;
 
 @Component
 @Slf4j
 public class OwnerContactProcessor implements Processor {
 
-    @Override
-    public void process(Exchange exchange) throws Exception {
-        Tenant tenant = exchange.getIn().getBody(Tenant.class);
+  @Override
+  public void process(Exchange exchange) throws Exception {
+    Tenant tenant = exchange.getIn().getBody(Tenant.class);
 
-        // Start communicating wth owers -- Up to your cretivity to handle further routes ..
+    // Start communicating wth owers -- Up to your cretivity to handle further routes ..
 
+    log.info("OwnerContactProcessor is now competed its business.");
+  }
 
-        log.info("OwnerContactProcessor is now competed its business.");
-    }
-
-    @PostConstruct
-    public void init() {
-        log.info("{} Created.", this.getClass().getSimpleName());
-    }
-
+  @PostConstruct
+  public void init() {
+    log.info("{} Created.", this.getClass().getSimpleName());
+  }
 }

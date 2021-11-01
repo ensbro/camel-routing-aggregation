@@ -12,26 +12,26 @@ import java.util.Map;
 @Slf4j
 public class LoadOwnerConfigs implements Processor {
 
-    @Override
-    public void process(Exchange exchange) throws Exception {
-        Tenant tenant = exchange.getIn().getBody(Tenant.class);
+  @Override
+  public void process(Exchange exchange) {
+    Tenant tenant = exchange.getIn().getBody(Tenant.class);
 
-        String owner = (String)exchange.getIn().getHeader("OWNER_ID");
-        // Process & Update Tenant as needed
-        setCorrectHeaders(exchange);
+    String owner = (String) exchange.getIn().getHeader("OWNER_ID");
+    // Process & Update Tenant as needed
+    setCorrectHeaders(exchange);
 
-        log.info("{} - Owner Configurations are now loaded", owner);
-    }
+    log.info("{} - Owner Configurations are now loaded", owner);
+  }
 
-    public void setCorrectHeaders(Exchange exchange) {
-        final Object obj = exchange.getIn().getBody();
-        exchange.getOut().setBody(obj);
-        Map<String, Object> headers = exchange.getIn().getHeaders();
-        exchange.getOut().setHeaders(headers);
-    }
+  public void setCorrectHeaders(Exchange exchange) {
+    final Object obj = exchange.getIn().getBody();
+    exchange.getOut().setBody(obj);
+    Map<String, Object> headers = exchange.getIn().getHeaders();
+    exchange.getOut().setHeaders(headers);
+  }
 
-    @PostConstruct
-    public void init() {
-        log.info("{} Created.", this.getClass().getSimpleName());
-    }
+  @PostConstruct
+  public void init() {
+    log.info("{} Created.", this.getClass().getSimpleName());
+  }
 }

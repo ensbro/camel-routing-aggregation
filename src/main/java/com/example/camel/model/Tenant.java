@@ -13,12 +13,13 @@ import java.util.UUID;
 @Component
 @Slf4j
 public class Tenant {
-    private UUID id;
-    private String name;
-    private List<Owner> owners = new ArrayList<>();
-    private String message;
-    @PostConstruct
-    public void init(){
-        log.info("{} Created.", this.getClass().getSimpleName());
-    }
+  private UUID id;
+  private String name;
+  private List<Owner> owners = new ArrayList<>();
+  private String message;
+
+  @PostConstruct
+  public void init() {
+    log.info("{} Created.", this.getClass().getSimpleName());
+  }
 }
